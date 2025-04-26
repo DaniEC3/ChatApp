@@ -22,24 +22,40 @@ const Start = ({ navigation }) => {
               <Text style={styles.textBgd}>Choose Background Color:</Text>
               <View style={styles.backgrColor}>
                 <TouchableOpacity
+                  accessible={true}
+                  accessibilityLabel="Background color option"
+                  accessibilityHint="Lets you change the background color of the app."
+                  accessibilityRole="button"
                   style={[styles.button, styles.button1]}
                   onPress={() => setOverlayColor('rgba(9, 12, 8, 0.6)')}
                 >
                   <Text></Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                  accessible={true}
+                  accessibilityLabel="Background color option"
+                  accessibilityHint="Lets you change the background color of the app."
+                  accessibilityRole="button"
                   style={[styles.button, styles.button2]}
                   onPress={() => setOverlayColor('rgba(71, 64, 86, 0.6)')}
                 >
                   <Text></Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                  accessible={true}
+                  accessibilityLabel="Background color option"
+                  accessibilityHint="Lets you change the background color of the app."
+                  accessibilityRole="button"
                   style={[styles.button, styles.button3]}
                   onPress={() => setOverlayColor('rgba(138, 149, 165, 0.6)')}
                 >
                   <Text></Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                  accessible={true}
+                  accessibilityLabel="Background color option"
+                  accessibilityHint="Lets you change the background color of the app."
+                  accessibilityRole="button"
                   style={[styles.button, styles.button4]}
                   onPress={() => setOverlayColor('rgba(185, 198, 174, 0.4)')}
                 >
@@ -47,6 +63,10 @@ const Start = ({ navigation }) => {
                 </TouchableOpacity>
               </View>
               <Button
+                accessible={true}
+                accessibilityLabel="Go to chat option"
+                accessibilityHint="Lets you go to the chat screen."
+                accessibilityRole="button"
                 title="Go to Chat"
                 style={styles.buttonChat}
                 onPress={() => navigation.navigate('Chat', { name: name })}
