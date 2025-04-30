@@ -29,7 +29,7 @@ const Start = ({ navigation }) => {
                   style={[styles.button, styles.button1]}
                   onPress={() => setOverlayColor('rgba(9, 12, 8, 0.6)')}
                 >
-                  <Text></Text>
+                  <Text> </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   accessible={true}
@@ -39,7 +39,7 @@ const Start = ({ navigation }) => {
                   style={[styles.button, styles.button2]}
                   onPress={() => setOverlayColor('rgba(71, 64, 86, 0.6)')}
                 >
-                  <Text></Text>
+                  <Text> </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   accessible={true}
@@ -49,7 +49,7 @@ const Start = ({ navigation }) => {
                   style={[styles.button, styles.button3]}
                   onPress={() => setOverlayColor('rgba(138, 149, 165, 0.6)')}
                 >
-                  <Text></Text>
+                  <Text> </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   accessible={true}
@@ -59,7 +59,7 @@ const Start = ({ navigation }) => {
                   style={[styles.button, styles.button4]}
                   onPress={() => setOverlayColor('rgba(185, 198, 174, 0.4)')}
                 >
-                  <Text></Text>
+                  <Text> </Text>
                 </TouchableOpacity>
               </View>
               <Button
