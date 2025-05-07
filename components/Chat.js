@@ -1,20 +1,26 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
-import { collection, getDocs,addDoc, onSnapshot, query, orderBy } from "firebase/firestore";
+import { collection, getDocs,addDoc, onSnapshot, query, orderBy, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebaseConfig.js';
 
 
 const Chat = ({ route, navigation }) => {
-  const { name } = route.params;
+  const { name = "Anonymous" } = route.params;
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    navigation.setOptions({ title: name });
     const q = query(collection(db, "messages"), orderBy("createdAt", "desc"))
     const unsubMessages = onSnapshot(q, (documentsSnapshot) => {
       let newMessages = [];
       documentsSnapshot.forEach(doc => {
-        newMessages.push({ id: doc.id, ...doc.data() })
+        const data = doc.data();
+        newMessages.push({
+          id: doc.id,
+          ...data,
+          createdAt: data.createdAt?.toMillis ? new Date(data.createdAt.toMillis()) : new Date()
+        });
       });
       setMessages(newMessages);
     });
@@ -25,9 +31,13 @@ const Chat = ({ route, navigation }) => {
     }
   }, []);
 
-  const onSend = (newMessages) => {
-    addDoc(collection(db, "messages"), newMessages[0])
-  }
+  const onSend = (newMessages = []) => {
+    const message = {
+      ...newMessages[0],
+      createdAt: serverTimestamp(), // ✅ Add server timestamp
+    };
+    addDoc(collection(db, "messages"), message);
+  };
   const renderBubble = (props) => {
     return <Bubble
       {...props}
