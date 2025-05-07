@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { collection, getDocs } from "firebase/firestore";
 import Start from './components/Start';
 import Chat from './components/Chat';
+
 
 // import react Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+// Create the navigator
 const Stack = createNativeStackNavigator();
 
 const App = () => {

@@ -1,11 +1,22 @@
 import { useState } from 'react';
-import { StyleSheet, View, Text, Button, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
+import { Alert, StyleSheet, View, Text, Button, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import startImage from '../assets/BackgroundImage.png';
+import { getAuth, onAuthStateChanged, signInAnonymously } from "firebase/auth";
 
 const Start = ({ navigation }) => {
   const [name, setName] = useState("");
   const [overlayColor, setOverlayColor] = useState('rgba(0, 0, 0, 0)');
+  const auth = getAuth();
+    const signInUser = () => {
+      signInAnonymously(auth)
+        .then(result => {
+          navigation.navigate("Chat", { userID: result.user.uid });
+          Alert.alert("Signed in Successfully!");
+        })
+        .catch((error) => {
+          Alert.alert("Unable to sign in, try later again.");
+        })}
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container} edges={['left', 'right']}>
@@ -69,7 +80,7 @@ const Start = ({ navigation }) => {
                 accessibilityRole="button"
                 title="Go to Chat"
                 style={styles.buttonChat}
-                onPress={() => navigation.navigate('Chat', { name: name })}
+                onPress={ signInUser }
               />
             </View>
           </View>
