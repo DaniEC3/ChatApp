@@ -2,22 +2,17 @@ import { useState, useEffect } from "react";
 import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
 import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
 import { collection, getDocs, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "firebase/firestore";
-import { db } from '../firebaseConfig.js';
+import { db, storage } from '../firebaseConfig.js';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CustomActions from './CustomActions';
+import MapView from 'react-native-maps';
 
 
 
 const Chat = ({ route, navigation, isConnected }) => {
   const { name = "Anonymous" } = route.params;
   const [messages, setMessages] = useState([]);
-
   let unsubMessages;
-
-  const renderInputToolbar = (props) => {
-    if (isConnected) return <InputToolbar {...props} />;
-    return null;
-  };
-
 
   useEffect(() => {
     if (unsubMessages) unsubMessages();
@@ -58,6 +53,15 @@ const Chat = ({ route, navigation, isConnected }) => {
     setLists(JSON.parse(cachedLists));
   }
 
+  const renderInputToolbar = (props) => {
+    if (isConnected) return <InputToolbar {...props} />;
+    return null;
+  };
+
+  const renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  };
+
   const onSend = (newMessages = []) => {
     const message = {
       ...newMessages[0],
@@ -65,6 +69,30 @@ const Chat = ({ route, navigation, isConnected }) => {
     };
     addDoc(collection(db, "messages"), message);
   };
+
+  const renderCustomView = (props) => {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{
+            width: 150,
+            height: 100,
+            borderRadius: 13,
+            margin: 3
+          }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      );
+    }
+    return null;
+  }
+
   const renderBubble = (props) => {
     return <Bubble
       {...props}
@@ -86,6 +114,8 @@ const Chat = ({ route, navigation, isConnected }) => {
         renderBubble={renderBubble}
         onSend={messages => onSend(messages)}
         renderInputToolbar={renderInputToolbar}
+        renderActions={renderCustomActions}
+        renderCustomView={renderCustomView}
         user={{
           _id: route.params.userID,
           name: name
