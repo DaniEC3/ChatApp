@@ -16,11 +16,11 @@ const Chat = ({ route, navigation, isConnected }) => {
 
   useEffect(() => {
     if (unsubMessages) unsubMessages();
-    unsubMessagess = null;
+    unsubMessages = null;
     navigation.setOptions({ title: name });
     if (isConnected === true) {
       const q = query(collection(db, "messages"), orderBy("createdAt", "desc"))
-      let unsubMessages = onSnapshot(q, (documentsSnapshot) => {
+      unsubMessages = onSnapshot(q, (documentsSnapshot) => {
         let newMessages = [];
         documentsSnapshot.forEach(doc => {
           const data = doc.data();
@@ -50,7 +50,7 @@ const Chat = ({ route, navigation, isConnected }) => {
   }
   const loadCachedLists = async () => {
     const cachedLists = await AsyncStorage.getItem("messages_stored") || [];
-    setLists(JSON.parse(cachedLists));
+    setMessages(JSON.parse(cachedLists));
   }
 
   const renderInputToolbar = (props) => {
