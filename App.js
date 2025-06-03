@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Alert } from "react-native";
 import Start from './components/Start';
 import Chat from './components/Chat';
-import { db } from './firebaseConfig.js';
+import { app, db } from './firebaseConfig.js';
 import { disableNetwork, enableNetwork } from "firebase/firestore";
 
 // import react Navigation
@@ -19,6 +19,7 @@ const App = () => {
   const connectionStatus = useNetInfo();
 
   useEffect(() => {
+    if (!app) return; // ✅ Wait until Firebase app is ready
     if (connectionStatus.isConnected === false) {
       Alert.alert("Connection Lost!");
       disableNetwork(db);
@@ -38,9 +39,9 @@ const App = () => {
         />
         <Stack.Screen name="Chat">
           {props => (
-            <Chat 
-            isConnected={connectionStatus.isConnected} 
-            {...props} />
+            <Chat
+              isConnected={connectionStatus.isConnected}
+              {...props} />
           )}
         </Stack.Screen>
 

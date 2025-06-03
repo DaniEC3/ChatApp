@@ -3,11 +3,12 @@ import { Alert, StyleSheet, View, Text, Button, TextInput, ImageBackground, Touc
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import startImage from '../assets/BackgroundImage.png';
 import { getAuth, onAuthStateChanged, signInAnonymously } from "firebase/auth";
+import { app } from '../firebaseConfig.js'
 
 const Start = ({ navigation }) => {
   const [name, setName] = useState("");
   const [overlayColor, setOverlayColor] = useState('rgba(0, 0, 0, 0)');
-  const auth = getAuth();
+  const auth = getAuth(app);
   const signInUser = () => {
     signInAnonymously(auth)
       .then((result) => {
