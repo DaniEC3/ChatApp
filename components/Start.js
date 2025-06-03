@@ -12,6 +12,7 @@ const Start = ({ navigation }) => {
   const signInUser = () => {
     signInAnonymously(auth)
       .then((result) => {
+        console.log("✅ Signing in, navigating to Chat...");
         navigation.navigate("Chat", { userID: result.user.uid });
         Alert.alert("Signed in Successfully!");
       })

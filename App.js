@@ -27,7 +27,7 @@ const App = () => {
       enableNetwork(db);
     }
   }, [connectionStatus.isConnected]);
-
+  console.log("👀 Navigation Stack Mounting");
   return (
     <NavigationContainer>
       <Stack.Navigator
