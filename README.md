@@ -1,91 +1,69 @@
-# React Native Project - Chat App
+# React Native Chat Application
 
-This is a simple React Native project for a Chat App. It includes a welcome screen with buttons to navigate to the chat page. The buttons have different background colors, and the app uses an image background for the visual design.
+This repository contains a simple chat application built with **React Native** and **Expo**. It demonstrates basic navigation, real time messaging with **Firebase Firestore**, offline support and media sharing.
+
+![demo](Gif-5-3-Section.gif)
 
 ## Features
 
-- **Image Background**: The app includes a beautiful background image that covers the entire screen.
-- **Buttons**: Four buttons with different background colors that change the background color of the app when pressed.
-- **TextInput**: A text input for the user to enter their name.
-- **Navigation**: Users can press the "Go to Chat" button to navigate to the Chat screen.
+- Anonymous sign in with Firebase authentication
+- Real time chat powered by Firestore
+- Send images from the camera or photo library
+- Share current location on a map
+- Offline message caching with `AsyncStorage`
+- Customizable chat bubble styles
+- Works on Android and iOS via Expo
 
 ## Getting Started
 
 ### Prerequisites
 
-Before you begin, make sure you have the following installed:
-
-- **Node.js**: [Install Node.js](https://nodejs.org/)
-- **Expo CLI**: [Install Expo CLI](https://docs.expo.dev/get-started/installation/)
-- **React Native**: [React Native Setup](https://reactnative.dev/docs/environment-setup)
+- [Node.js](https://nodejs.org/) and npm
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
 
 ### Installation
 
-1. Clone this repository to your local machine:
+Clone the repository and install dependencies:
 
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
-Install the dependencies:
-
-bash
-Copy
-Edit
+```bash
 npm install
-Start the project:
+```
 
-bash
-Copy
-Edit
-npx expo start
-This will start the Expo development server. Scan the QR code with the Expo Go app on your phone, or press a to open the app in an Android emulator or i for iOS.
+### Running the App
 
-Folder Structure
-bash
-Copy
-Edit
-/assets
-  └── BackgroundImage.png  # The background image used in the app
-/components
-  └── Start.js             # The main component for the Start screen
-/styles
-  └── styles.js            # Common styles used across the app
-Key Components
-Start.js
-The Start.js file is the main entry point for the app. It contains:
+Start the Expo development server:
 
-A welcome text (Hello!).
+```bash
+npm start
+```
 
-A TextInput field where users can type their name.
+Use the Expo Go app on your device or an emulator to view the application.
 
-Four buttons with different background colors (button1, button2, button3, button4) that change the background color when pressed.
+## Project Structure
 
-A button that navigates to the Chat screen when pressed.
+```
+assets/              # Images and icons
+components/          # React components (Chat, Start, CustomActions)
+App.js               # Entry component with navigation
+firebaseConfig.js    # Firebase initialization
+index.js             # Expo entry point
+```
 
-styles.js
-The styles.js file contains the styles for the app, including:
+## Firebase Setup
 
-Background color and button styles.
+Update `firebaseConfig.js` with your own Firebase project credentials if you wish to deploy your own instance of the chat service.
 
-Text and input field styles.
+## Scripts
 
-Technologies Used
-React Native: Framework for building native apps.
+- `npm start` – run the project with Expo
+- `npm run android` – build/run on Android
+- `npm run ios` – build/run on iOS
+- `npm run web` – run in a web browser
 
-Expo: Tools for building and deploying React Native apps.
+## Contributing
 
-React Navigation: For navigating between screens.
+Feel free to open issues or submit pull requests if you have improvements or fixes.
 
-JavaScript (ES6): For app logic and functionality.
+## License
 
-Contribution
-If you want to contribute to this project, feel free to fork the repository and submit a pull request with your improvements or fixes.
-
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-sql
-Copy
-Edit
-
-Just copy the above content and paste it directly into your `README.md` file in yo
+This project is provided under the MIT License.
