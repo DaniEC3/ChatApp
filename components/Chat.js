@@ -59,7 +59,13 @@ const Chat = ({ route, navigation, isConnected }) => {
   };
 
   const renderCustomActions = (props) => {
-    return <CustomActions {...props} />;
+    return (
+      <CustomActions
+        {...props}
+        onSend={onSend}
+        userID={route.params.userID}
+      />
+    );
   };
 
   const onSend = (newMessages = []) => {

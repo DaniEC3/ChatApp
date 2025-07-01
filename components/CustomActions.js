@@ -41,6 +41,27 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, userID }) => {
     return `${userID}-${timeStamp}-${imageName}`;
   }
 
+  const uploadAndSendImage = async (imageURI) => {
+    try {
+      const uniqueRefString = generateReference(imageURI);
+      const response = await fetch(imageURI);
+      const blob = await response.blob();
+      const newUploadRef = ref(storage, uniqueRefString);
+      const snapshot = await uploadBytes(newUploadRef, blob);
+      const imageURL = await getDownloadURL(snapshot.ref);
+      onSend([{ 
+        _id: `${userID}-${new Date().getTime()}`,
+        createdAt: new Date(),
+        user: {
+          _id: userID,
+        },
+        image: imageURL,
+      }]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const takePhoto = async () => {
     let permissions = await ImagePicker.requestCameraPermissionsAsync();
     if (permissions?.granted) {
@@ -67,24 +88,10 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, userID }) => {
       let result = await ImagePicker.launchImageLibraryAsync();
       if (!result.canceled) {
         const imageURI = result.assets[0].uri;
-        const uniqueRefString = generateReference(imageURI);
-        const response = await fetch(imageURI);
-        const blob = await response.blob();
-        const newUploadRef = ref(storage, uniqueRefString);
-        uploadBytes(newUploadRef, blob).then(async (snapshot) => {
-          console.log('File has been uploaded successfully');
-          const imageURL = await getDownloadURL(snapshot.ref)
-          onSend([{
-            _id: `${userID}-${new Date().getTime()}`,
-            createdAt: new Date(),
-            user: {
-              _id: userID
-            },
-            image: imageURL
-          }]);
-        })
+        await uploadAndSendImage(imageURI);
+      } else {
+        Alert.alert("Permissions haven't been granted.");
       }
-      else Alert.alert("Permissions haven't been granted.");
     }
   }
   const getLocation = async () => {
