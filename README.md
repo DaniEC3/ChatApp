@@ -23,6 +23,8 @@ A simple chat application built with React Native and Expo. The start screen all
 ## Prerequisites
 - [Node.js](https://nodejs.org/) and npm
 - [Expo CLI](https://docs.expo.dev/get-started/installation/)
+- [React Native](https://reactnative.dev/docs/environment-setup) environment set up (Expo or Bare Workflow)
+- A physical device or emulator/simulator to run the app
 
 ## Installation
 1. Clone this repository
