@@ -5,6 +5,7 @@ import * as Location from 'expo-location';
 import * as MediaLibrary from 'expo-media-library';
 import { storage } from '../firebaseConfig.js';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { Alert } from 'react-native';
 
 
 const CustomActions = (wrapperStyle, iconTextStyle, onSend, userID) => {
@@ -27,6 +28,7 @@ const CustomActions = (wrapperStyle, iconTextStyle, onSend, userID) => {
             return;
           case 2:
             getLocation();
+            return;
           default:
         }
       },
@@ -94,7 +96,7 @@ const CustomActions = (wrapperStyle, iconTextStyle, onSend, userID) => {
   }
 
   return (
-    <TouchableOpacity style={container} onPress={onActionPress}>
+    <TouchableOpacity style={styles.container} onPress={onActionPress}>
       <View style={[styles.wrapper, wrapperStyle]}>
         <Text style={[styles.iconText, iconTextStyle]}>+</Text>
       </View>

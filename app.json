@@ -12,7 +12,25 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationPermission": "This app uses your location to share your position in the chat."
+        }
+      ],
+      "expo-media-library"
+    ],
     "ios": {
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to share your position in the chat."
+      },
       "supportsTablet": true,
       "bundleIdentifier": "com.daduz3.NewProject"
     },

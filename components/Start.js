@@ -8,8 +8,11 @@ import { app } from '../firebaseConfig.js'
 const Start = ({ navigation }) => {
   const [name, setName] = useState("");
   const [overlayColor, setOverlayColor] = useState('rgba(0, 0, 0, 0)');
-  const auth = getAuth(app);
+
   const signInUser = () => {
+    if (!app) return;
+    const auth = getAuth(app);
+    if (!auth) return;
     signInAnonymously(auth)
       .then((result) => {
         console.log("✅ Signing in, navigating to Chat...");
