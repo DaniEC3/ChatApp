@@ -4,7 +4,8 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
 import * as MediaLibrary from 'expo-media-library';
 import { storage } from '../firebaseConfig.js';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+import * as FileSystem from 'expo-file-system';
 import { Alert } from 'react-native';
 
 
@@ -44,10 +45,13 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, userID }) => {
   const uploadAndSendImage = async (imageURI) => {
     try {
       const uniqueRefString = generateReference(imageURI);
-      const response = await fetch(imageURI);
-      const blob = await response.blob();
+      // Read the selected image as a base64 string. This avoids issues
+      // with the fetch API on different platforms.
+      const base64Data = await FileSystem.readAsStringAsync(imageURI, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
       const newUploadRef = ref(storage, uniqueRefString);
-      const snapshot = await uploadBytes(newUploadRef, blob);
+      const snapshot = await uploadString(newUploadRef, base64Data, 'base64');
       const imageURL = await getDownloadURL(snapshot.ref);
       onSend([{ 
         _id: `${userID}-${new Date().getTime()}`,
