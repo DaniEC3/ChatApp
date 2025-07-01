@@ -8,7 +8,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Alert } from 'react-native';
 
 
-const CustomActions = ({wrapperStyle, iconTextStyle, onSend, userID}) => {
+const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, userID }) => {
   const actionSheet = useActionSheet();
   const onActionPress = () => {
     const options = ['Choose From Library', 'Take Picture', 'Send Location', 'Cancel'];
@@ -74,7 +74,14 @@ const CustomActions = ({wrapperStyle, iconTextStyle, onSend, userID}) => {
         uploadBytes(newUploadRef, blob).then(async (snapshot) => {
           console.log('File has been uploaded successfully');
           const imageURL = await getDownloadURL(snapshot.ref)
-          onSend({ image: imageURL })
+          onSend([{
+            _id: `${userID}-${new Date().getTime()}`,
+            createdAt: new Date(),
+            user: {
+              _id: userID
+            },
+            image: imageURL
+          }]);
         })
       }
       else Alert.alert("Permissions haven't been granted.");
@@ -85,12 +92,18 @@ const CustomActions = ({wrapperStyle, iconTextStyle, onSend, userID}) => {
     if (permissions?.granted) {
       const location = await Location.getCurrentPositionAsync({});
       if (location) {
-        onSend({
+        onSend([{
+          _id: `${userID}-${new Date().getTime()}`,
+          createdAt: new Date(),
+          user: {
+            _id: userID
+          },
           location: {
             longitude: location.coords.longitude,
             latitude: location.coords.latitude,
-          },
-        });
+          }
+        }]);
+
       } else Alert.alert("Error occurred while fetching location");
     } else Alert.alert("Permissions haven't been granted.");
   }
