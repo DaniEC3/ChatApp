@@ -10,6 +10,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		63F80818701E420FFB5BEDF2 /* libPods-NewProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9223620E6C217F88C717642E /* libPods-NewProject.a */; };
+		77437693E6694610943691AB /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24166FC21F144E4D9B07F945 /* noop-file.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		D3977E73A418B3EC54F68AA6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F752BC237AA538AFD2802A36 /* PrivacyInfo.xcprivacy */; };
 		D831AED813427C75AD7454F7 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B6487C3D4ABF12CB5E2E7D /* ExpoModulesProvider.swift */; };
@@ -20,6 +21,7 @@
 		13B07F961A680F5B00A75B9A /* NewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NewProject/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = NewProject/Info.plist; sourceTree = "<group>"; };
+		24166FC21F144E4D9B07F945 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "NewProject/noop-file.swift"; sourceTree = "<group>"; };
 		59990BA4874EA0B18B6C5832 /* Pods-NewProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewProject.debug.xcconfig"; path = "Target Support Files/Pods-NewProject/Pods-NewProject.debug.xcconfig"; sourceTree = "<group>"; };
 		9223620E6C217F88C717642E /* libPods-NewProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B6487C3D4ABF12CB5E2E7D /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NewProject/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
 				F752BC237AA538AFD2802A36 /* PrivacyInfo.xcprivacy */,
+				24166FC21F144E4D9B07F945 /* noop-file.swift */,
 			);
 			name = NewProject;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
 				D831AED813427C75AD7454F7 /* ExpoModulesProvider.swift in Sources */,
+				77437693E6694610943691AB /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

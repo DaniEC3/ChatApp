@@ -8,7 +8,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Alert } from 'react-native';
 
 
-const CustomActions = (wrapperStyle, iconTextStyle, onSend, userID) => {
+const CustomActions = ({wrapperStyle, iconTextStyle, onSend, userID}) => {
   const actionSheet = useActionSheet();
   const onActionPress = () => {
     const options = ['Choose From Library', 'Take Picture', 'Send Location', 'Cancel'];

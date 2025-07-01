@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx expo start -c",
+    "start": "expo start --dev-client",
     "android": "npx expo run:android",
     "ios": "npx expo run:ios",
     "web": "npx expo start --web"
@@ -23,7 +23,7 @@
     "firebase": "^11.10.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-native": "0.79.2",
+    "react-native": "0.79.4",
     "react-native-gifted-chat": "^2.6.5",
     "react-native-keyboard-controller": "^1.17.5",
     "react-native-maps": "1.20.1",
