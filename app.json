@@ -29,7 +29,10 @@
     ],
     "ios": {
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "This app uses your location to share your position in the chat."
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to share your position in the chat.",
+        "NSCameraUsageDescription": "This app needs access to your camera.",
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to select images.",
+        "NSPhotoLibraryAddUsageDescription": "This app needs permission to save photos to your photo library."
       },
       "supportsTablet": true,
       "bundleIdentifier": "com.daduz3.NewProject"

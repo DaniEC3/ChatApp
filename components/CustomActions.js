@@ -41,17 +41,32 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, userID }) => {
     return `${userID}-${timeStamp}-${imageName}`;
   }
 
+  const uriToBlob = (uri) => {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function () {
+        reject(new Error('Failed to fetch file as blob'));
+      };
+      xhr.responseType = 'blob';
+      xhr.open('GET', uri, true);
+      xhr.send(null);
+    });
+  };
+
+
   const uploadAndSendImage = async (imageURI) => {
     try {
       const uniqueRefString = generateReference(imageURI);
       const newUploadRef = ref(storage, uniqueRefString);
       if (!newUploadRef) throw new Error('New upload ref is not defined')
-       const response = await fetch(imageURI);
+      const response = await fetch(imageURI);
       const blob = await response.blob();
-
       const snapshot = await uploadBytes(newUploadRef, blob);
       const imageURL = await getDownloadURL(snapshot.ref);
-      onSend([{ 
+      onSend([{
         _id: `${userID}-${new Date().getTime()}`,
         createdAt: new Date(),
         user: {
@@ -66,12 +81,20 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, userID }) => {
 
   const takePhoto = async () => {
     let permissions = await ImagePicker.requestCameraPermissionsAsync();
+    // console.log('WORKING;',permissions)
+
     if (permissions?.granted) {
-      let result = await ImagePicker.launchCameraAsync();
+
+      let result = await ImagePicker.launchCameraAsync().catch((e) => {
+        console.log(e)
+      })
+      console.log('WORKING;', permissions)
+
       if (!result.canceled) {
 
         const uri = result.assets[0].uri;
         let mediaLibraryPermissions = await MediaLibrary.requestPermissionsAsync();
+        console.log("Uri", uri)
 
         if (mediaLibraryPermissions?.granted) {
           await MediaLibrary.saveToLibraryAsync(uri);
