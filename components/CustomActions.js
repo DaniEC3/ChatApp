@@ -45,6 +45,7 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, userID }) => {
     try {
       const uniqueRefString = generateReference(imageURI);
       const newUploadRef = ref(storage, uniqueRefString);
+      if (!newUploadRef) throw new Error('New upload ref is not defined')
        const response = await fetch(imageURI);
       const blob = await response.blob();
 
